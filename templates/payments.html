@@ -28,7 +28,7 @@
             {% for account in accounts %}
             <div class="user-info">
                 <div class="user-avatar"></div>
-                <span>{{ user.name }}</span>
+                <a href="{{ url_for('logout') }}" class="logout-link"><span>{{ user.name }}</span></a>
             </div>
             {% endfor %}
         </div>
