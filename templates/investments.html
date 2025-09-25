@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumInvest - Investment Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inves_style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>QuantumInvest</h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Investments</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <div class="user-avatar"></div>
+                <span>{{ user.name }}</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2>Investment Portfolio</h2>
+            <p>Advanced quantum-powered investment management with AI-driven insights</p>
+        </section>
+
+        <!-- Portfolio Overview -->
+        <section class="portfolio-overview">
+            <div class="portfolio-main">
+                <div class="portfolio-header">
+                    <h2 class="portfolio-title">Total Portfolio Value</h2>
+                    <div class="portfolio-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Elite Investor</span>
+                    </div>
+                </div>
+
+                <div class="total-value">
+                    <div class="value-label">Current Portfolio Value</div>
+                    <div class="value-amount">$8,347,291.83</div>
+                    <div class="value-change">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>+$421,847.29 (+5.32%) Today</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-stats">
+                <h3 style="color: #00ffcc; margin-bottom: 1rem; font-size: 1.3rem;">Performance Stats</h3>
+                <div class="stat-item">
+                    <span class="stat-label">1-Day Return</span>
+                    <span class="stat-value stat-positive">+5.32%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">1-Week Return</span>
+                    <span class="stat-value stat-positive">+12.48%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">1-Month Return</span>
+                    <span class="stat-value stat-positive">+28.67%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">YTD Return</span>
+                    <span class="stat-value stat-positive">+94.31%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">All-Time Return</span>
+                    <span class="stat-value stat-positive">+347.82%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sharpe Ratio</span>
+                    <span class="stat-value">2.84</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Holdings -->
+        <section class="holdings-section">
+            <div class="section-header">
+                <h3 class="section-title">Top Holdings</h3>
+                <a href="#" style="color: #00ffcc; text-decoration: none;">View All Holdings</a>
+            </div>
+
+            <div class="holdings-grid">
+                <!-- Holding 1: Quantum Computing ETF -->
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-info">
+                            <div class="holding-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="holding-details">
+                                <h4>Quantum Computing ETF</h4>
+                                <p>QTUM • Technology Sector</p>
+                            </div>
+                        </div>
+                        <div class="holding-value">
+                            <div class="current-value">$2,847,592.45</div>
+                            <div class="value-change change-positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8.47% (+$222,984.30)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="holding-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-label">Shares</div>
+                            <div class="stat-box-value">12,847</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Avg Cost</div>
+                            <div class="stat-box-value">$204.73</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Current Price</div>
+                            <div class="stat-box-value">$221.55</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">P&L</div>
+                            <div class="stat-box-value" style="color: #00ff88;">+$216,012</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holding 2: AI & Robotics Fund -->
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-info">
+                            <div class="holding-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="holding-details">
+                                <h4>AI & Robotics Fund</h4>
+                                <p>AIRO • Artificial Intelligence</p>
+                            </div>
+                        </div>
+                        <div class="holding-value">
+                            <div class="current-value">$1,923,847.21</div>
+                            <div class="value-change change-positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+6.23% (+$113,024.87)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="holding-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-label">Shares</div>
+                            <div class="stat-box-value">8,492</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Avg Cost</div>
+                            <div class="stat-box-value">$213.45</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Current Price</div>
+                            <div class="stat-box-value">$226.58</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">P&L</div>
+                            <div class="stat-box-value" style="color: #00ff88;">+$111,478</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holding 3: Renewable Energy Corp -->
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-info">
+                            <div class="holding-icon">
+                                <i class="fas fa-solar-panel"></i>
+                            </div>
+                            <div class="holding-details">
+                                <h4>Renewable Energy Corp</h4>
+                                <p>RENE • Clean Energy</p>
+                            </div>
+                        </div>
+                        <div class="holding-value">
+                            <div class="current-value">$1,684,923.17</div>
+                            <div class="value-change change-positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+4.18% (+$67,582.94)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="holding-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-label">Shares</div>
+                            <div class="stat-box-value">15,673</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Avg Cost</div>
+                            <div class="stat-box-value">$98.32</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Current Price</div>
+                            <div class="stat-box-value">$107.49</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">P&L</div>
+                            <div class="stat-box-value" style="color: #00ff88;">+$143,721</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holding 4: Biotech Innovation -->
+                <div class="holding-card">
+                    <div class="holding-header">
+                        <div class="holding-info">
+                            <div class="holding-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <div class="holding-details">
+                                <h4>Biotech Innovation Inc</h4>
+                                <p>BIOT • Biotechnology</p>
+                            </div>
+                        </div>
+                        <div class="holding-value">
+                            <div class="current-value">$1,347,829.00</div>
+                            <div class="value-change change-positive">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+11.94% (+$143,829.18)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="holding-stats">
+                        <div class="stat-box">
+                            <div class="stat-box-label">Shares</div>
+                            <div class="stat-box-value">4,923</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Avg Cost</div>
+                            <div class="stat-box-value">$244.75</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">Current Price</div>
+                            <div class="stat-box-value">$273.92</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-box-label">P&L</div>
+                            <div class="stat-box-value" style="color: #00ff88;">+$143,472</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="quick-action">
+                <i class="fas fa-plus-circle"></i>
+                <span>Buy Investment</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-minus-circle"></i>
+                <span>Sell Position</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Rebalance</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-chart-area"></i>
+                <span>Market Analysis</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-bell"></i>
+                <span>Price Alerts</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate portfolio value on load
+            const portfolioElement = document.querySelector('.value-amount');
+            const targetAmount = 8347291.83;
+            let currentAmount = 0;
+            const increment = targetAmount / 120;
+            
+            const timer = setInterval(() => {
+                currentAmount += increment;
+                if (currentAmount >= targetAmount) {
+                    currentAmount = targetAmount;
+                    clearInterval(timer);
+                }
+                portfolioElement.textContent = '$' + currentAmount.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }, 25);
+
+            // Add hover effects to quick actions
+            const quickActions = document.querySelectorAll('.quick-action');
+            quickActions.forEach(action => {
+                action.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(0, 255, 204, 0.15)';
+                });
+                action.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(17, 17, 56, 0.8)';
+                });
+            });
+
+            // Add click effects to holding cards
+            const holdingCards = document.querySelectorAll('.holding-card');
+            holdingCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'translateY(-8px) scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px) scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Animate performance stats
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach((stat, index) => {
+                setTimeout(() => {
+                    stat.style.opacity = '0';
+                    stat.style.transform = 'translateY(20px)';
+                    stat.style.transition = 'all 0.5s ease';
+                    
+                    setTimeout(() => {
+                        stat.style.opacity = '1';
+                        stat.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

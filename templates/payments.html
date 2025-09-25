@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumPay - Payment Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pay_style.css') }}">
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <h1>QuantumPay</h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Payments</a></li>
+                    <li><a href="#">Accounts</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            {% for account in accounts %}
+            <div class="user-info">
+                <div class="user-avatar"></div>
+                <span>{{ user.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2>Payment Dashboard</h2>
+            <p>Manage your high-value transactions with quantum-level security</p>
+        </section>
+
+        <!-- Payment Overview Card -->
+        <section class="payment-card">
+            <div class="payment-header">
+                <h2 class="payment-title">Primary Account</h2>
+                <div class="payment-status">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Active</span>
+                </div>
+            </div>
+
+            <div class="balance-display">
+                <div class="balance-label">Available Balance</div>
+                <div class="balance-amount">$2,847,593.45</div>
+            </div>
+
+            <div class="account-info">
+                <div class="info-item">
+                    <div class="info-label">Account Number</div>
+                    <div class="info-value">****-****-****-8492</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Account Type</div>
+                    <div class="info-value">Premium Business</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Last Updated</div>
+                    <div class="info-value">2 minutes ago</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Security Level</div>
+                    <div class="info-value">Quantum Encrypted</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transaction History -->
+        <section class="transaction-section">
+            <div class="section-header">
+                <h3 class="section-title">Recent Transaction</h3>
+                <a href="#" class="view-all" style="color: #00ffcc; text-decoration: none;">View All History</a>
+            </div>
+
+            <div class="transaction-mega">
+                <div class="transaction-content">
+                    <div class="transaction-left">
+                        <div class="transaction-icon-large">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="transaction-details-large">
+                            <h4 class="transaction-title">Quantum Systems Ltd.</h4>
+                            <p class="transaction-subtitle">Enterprise Software License</p>
+                            <div class="transaction-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">Transaction ID</span>
+                                    <span class="meta-value">QTX-847293-2025</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Date & Time</span>
+                                    <span class="meta-value">Sep 24, 2025 - 14:23 UTC</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Method</span>
+                                    <span class="meta-value">Quantum Transfer</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Status</span>
+                                    <span class="meta-value" style="color: #00ff88;">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transaction-right">
+                        <div class="amount-label">Amount Received</div>
+                        <div class="transaction-amount-large">+$1,250,000.00</div>
+                    </div>
+                </div>
+                <!-- Hidden CTF Flag -->
+                {% if flag %}
+                <section class="ctf-flag" style="margin-top: 2rem; padding: 1rem; border: 2px dashed #00ffcc; border-radius: 10px; background: rgba(0,255,204,0.1); text-align: center;">
+                    <h3 style="color: #00ffcc; font-weight: bold;">🎯 Flag Unlocked!</h3>
+                    <p style="color: #00ff88; font-size: 1.2rem; font-weight: bold;">{{ flag }}</p>
+                </section>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="quick-action">
+                <i class="fas fa-paper-plane"></i>
+                <span>Send Payment</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-download"></i>
+                <span>Request Payment</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-history"></i>
+                <span>View History</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-shield-alt"></i>
+                <span>Security</span>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate balance on load
+            const balanceElement = document.querySelector('.balance-amount');
+            const targetAmount = 2847593.45;
+            let currentAmount = 0;
+            const increment = targetAmount / 100;
+            
+            const timer = setInterval(() => {
+                currentAmount += increment;
+                if (currentAmount >= targetAmount) {
+                    currentAmount = targetAmount;
+                    clearInterval(timer);
+                }
+                balanceElement.textContent = '$' + currentAmount.toLocaleString('en-US', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            }, 20);
+
+            // Add hover effects to quick actions
+            const quickActions = document.querySelectorAll('.quick-action');
+            quickActions.forEach(action => {
+                action.addEventListener('mouseenter', function() {
+                    this.style.background = 'rgba(0, 255, 204, 0.1)';
+                });
+                action.addEventListener('mouseleave', function() {
+                    this.style.background = 'rgba(17, 17, 56, 0.8)';
+                });
+            });
+
+            // Add click effect to transaction
+            const transactionMega = document.querySelector('.transaction-mega');
+            transactionMega.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

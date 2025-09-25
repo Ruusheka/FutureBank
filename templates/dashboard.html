@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="logo.jpg" />
+    <title>Dashboard - FutureBank AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash_style.css') }}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <h1>FutureBank AI</h1>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="fas fa-exchange-alt"></i> Transfer</a></li>
+                    <li><a href="{{ url_for('payments') }}"><i class="fas fa-credit-card"></i> Payments</a></li>
+                    <li><a href="{{ url_for('investments') }}"><i class="fas fa-chart-line"></i> Investments</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <div class="user-avatar" style="background: linear-gradient(45deg, #00ffcc, #0099cc); display: flex; align-items: center; justify-content: center; color: #0c0c35; font-weight: bold; font-size: 1.2rem;">{{ user.name[:2] | upper }}</div>
+                <span>{{ user.name }}</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="dashboard">
+        <div class="welcome-section">
+            <h2>Welcome back, {{ user.name }}!</h2>
+            <p>Here's your account overview for today</p>
+        </div>
+
+        <div class="accounts-grid">
+            {% for account in accounts %}
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="user-profile-pic" style="background: linear-gradient(45deg, #00ffcc, #0099cc); display: flex; align-items: center; justify-content: center; color: #0c0c35; font-weight: bold; font-size: 2rem;">{{ user.name[:2] | upper }}</div>
+                    <div class="user-details">
+                        <h3>{{ user.name }}</h3>
+                        <div class="account-number">ACC: ****-{{ account.account_no }}235</div>
+                    </div>
+                </div>
+                
+                <div class="balance-section">
+                    <div class="balance-label">Current Balance</div>
+                    <div class="balance-amount">${{ "{:,.2f}".format(account.current_balance) }}</div>
+                    <div class="balance-change">↗ +2.5% this month</div>
+                </div>
+
+                <div class="transactions-section">
+                    <div class="transactions-header">
+                        <h4>Recent Transactions</h4>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon income">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Salary Deposit</h5>
+                                <p>Today, 09:30 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount positive">+$4,200.00</div>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon expense">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>AI Corp Purchase</h5>
+                                <p>Yesterday, 02:15 PM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount negative">-$2,458.00</div>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon income">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Investment Return</h5>
+                                <p>Sep 20, 11:45 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount positive">+$1,230.00</div>
+                    </div>
+                    
+
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon expense">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Utility Payment</h5>
+                                <p>Sep 18, 06:20 PM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount negative">-$145.80</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="user-profile-pic" style="background: linear-gradient(45deg, #ff6b6b, #ee5a52); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem;">SA</div>
+                    <div class="user-details">
+                        <h3>Savings Account</h3>
+                        <div class="account-number">ACC: ****-{{ account.account_no }}235</div>
+                    </div>
+                </div>
+                
+                <div class="balance-section">
+                    <div class="balance-label">Savings Balance</div>
+                    <div class="balance-amount">${{ "{:,.2f}".format(account.savings_balance) }}</div>
+                    <div class="balance-change">↗ +5.2% this year</div>
+                </div>
+
+                <div class="transactions-section">
+                    <div class="transactions-header">
+                        <h4>Recent Activity</h4>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon income">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Interest Earned</h5>
+                                <p>Today, 12:00 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount positive">+$87.42</div>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon income">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Transfer from Checking</h5>
+                                <p>Sep 21, 03:30 PM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount positive">+$5,000.00</div>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="transaction-info">
+                            <div class="transaction-icon expense">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h5>Investment Transfer</h5>
+                                <p>Sep 15, 10:20 AM</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount negative">-$10,000.00</div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="{{ url_for('payments') }}" class="quick-action">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Transfer Money</span>
+            </a>
+            
+            <a href="#" class="quick-action">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span>Pay Bills</span>
+            </a>
+            
+            <a href="#" class="quick-action">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Mobile Deposit</span>
+            </a>
+            
+            <a href="{{ url_for('investments') }}" class="quick-action">
+                <i class="fas fa-chart-pie"></i>
+                <span>Investments</span>
+            </a>
+            
+            <a href="#" class="quick-action">
+                <i class="fas fa-credit-card"></i>
+                <span>Manage Cards</span>
+            </a>
+            
+            <a href="#" class="quick-action">
+                <i class="fas fa-headset"></i>
+                <span>24/7 Support</span>
+            </a>
+        </div>
+
+
+        <!-- Stats Overview -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <div style="background: rgba(17, 17, 56, 0.8); border-radius: 15px; padding: 2rem; border: 1px solid rgba(0, 255, 204, 0.3); text-align: center;">
+                <i class="fas fa-chart-line" style="font-size: 2.5rem; color: #00ffcc; margin-bottom: 1rem;"></i>
+                <h3 style="color: #00ffcc; margin-bottom: 0.5rem;">Monthly Growth</h3>
+                <div style="font-size: 2rem; color: #00ff88; font-weight: bold;">+8.7%</div>
+                <p style="color: #a0a0ff; font-size: 0.9rem;">Compared to last month</p>
+            </div>
+            
+            <div style="background: rgba(17, 17, 56, 0.8); border-radius: 15px; padding: 2rem; border: 1px solid rgba(0, 255, 204, 0.3); text-align: center;">
+                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: #00ffcc; margin-bottom: 1rem;"></i>
+                <h3 style="color: #00ffcc; margin-bottom: 0.5rem;">Security Score</h3>
+                <div style="font-size: 2rem; color: #00ff88; font-weight: bold;">98/100</div>
+                <p style="color: #a0a0ff; font-size: 0.9rem;">Excellent security rating</p>
+            </div>
+            
+            <div style="background: rgba(17, 17, 56, 0.8); border-radius: 15px; padding: 2rem; border: 1px solid rgba(0, 255, 204, 0.3); text-align: center;">
+                <i class="fas fa-star" style="font-size: 2.5rem; color: #00ffcc; margin-bottom: 1rem;"></i>
+                <h3 style="color: #00ffcc; margin-bottom: 0.5rem;">Rewards Points</h3>
+                <div style="font-size: 2rem; color: #ffcc00; font-weight: bold;">12,450</div>
+                <p style="color: #a0a0ff; font-size: 0.9rem;">Available for redemption</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: rgba(15, 15, 77, 0.9); text-align: center; padding: 2rem; margin-top: 3rem; color: #a0a0ff;">
+        <p>&copy; 2025 FutureBank AI. All rights reserved. | Powered by Advanced AI Technology</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="color: #00ffcc; margin: 0 1rem; text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="color: #00ffcc; margin: 0 1rem; text-decoration: none;">Terms of Service</a>
+            <a href="#" style="color: #00ffcc; margin: 0 1rem; text-decoration: none;">Contact Us</a>
+        </div>
+    </footer>
+</body>
+</html>
